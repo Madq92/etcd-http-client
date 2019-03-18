@@ -1,0 +1,13 @@
+log:
+  level: debug
+
+etcd:
+  hosts: 127.0.0.1:2379
+  username: root
+  password: root
+
+mysql:
+  url: url
+  user: user
+  password: password
+  port: 3306
