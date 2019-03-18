@@ -48,16 +48,23 @@ var routes = Routes{
 	},
 
 	Route{
-		"AddKeyUsingPOST",
-		strings.ToUpper("Post"),
-		"//etcd",
-		handler.AddKeyUsingPOST,
+		"get key",
+		strings.ToUpper("Get"),
+		"/etcd/{key}",
+		handler.GetKey,
 	},
 
 	Route{
-		"GetKeyUsingGET",
+		"get key",
+		strings.ToUpper("Post"),
+		"/etcd",
+		handler.PutKey,
+	},
+
+	Route{
+		"get config",
 		strings.ToUpper("Get"),
-		"//etcd",
-		handler.GetKeyUsingGET,
+		"/config",
+		handler.GetConf,
 	},
 }

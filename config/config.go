@@ -1,22 +1,37 @@
 package config
 
-var Config = struct {
-	APPName string `default:"app name"`
+import (
+	"fmt"
+	"github.com/jinzhu/configor"
+	"os"
+)
 
-	Etcd struct {
-		hosts    []string
-		Username string `default:"root"`
-		Password string `default:"root"`
-	}
+var Conf *Config
 
-	MySql struct {
-		Url      string
-		User     string `default:"root"`
-		Password string `default:"123456"`
-		Port     uint   `default:"3306"`
-	}
+type Config struct {
+	Etcd  Etcd
+	MySql MySql
+	Log   Log
+}
 
-	Log struct {
-		Level string
-	}
-}{}
+type Etcd struct {
+	Hosts    string
+	Username string
+	Password string
+}
+
+type MySql struct {
+	Url      string
+	User     string
+	Password string
+	Port     uint
+}
+
+type Log struct {
+	Level string
+}
+
+func init() {
+	fmt.Fprintln(os.Stdout, "init config, use config.yml")
+	configor.Load(&Conf, "config.yml")
+}
